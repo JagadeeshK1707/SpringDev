@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,12 +27,14 @@ public class TicketController {
 	//for all tickets
 	@GetMapping(value="/all")
 	public Iterable<Ticket> getAllTickets(){
+		System.out.println("--->inside controller , get mapping - getall tickets");
 		return ticketservice.getAll();
 	}
 	
 	//for one particular ticket
 	@GetMapping(value="/{ticketId}")
-	public Ticket getTicket(Integer ticketId) {
+	public Ticket getTicket(@PathVariable Integer ticketId) {
+		System.out.println("--->inside controller , get mapping - get one ticket");
 		return ticketservice.getTicket(ticketId);
 	}
 	
@@ -39,21 +42,25 @@ public class TicketController {
 	//create ticket
 	/*jackson library by defaultly converts the JSON to JAVA and JAVA to JAON
 	 *every rest request has some body section it will read the json in the body section and convert
-	 *java and the calls the below API
+	 *java and the calls the below API 
 	 * 
 	 * 
 	 */
 	@PostMapping(value="/create")
-	public Ticket createTicket(@PathVariable("ticketId") Ticket ticketObj) {
+	public Ticket createTicket(@RequestBody Ticket ticketObj) {
+		System.out.println("Request Body: " + ticketObj);
+		System.out.println("--->inside controller , post mapping - create ticket");
 		return ticketservice.createTicket(ticketObj);
 	}
 	
 	@PutMapping(value= "/{ticketID}/{newEmail}")
 	public Ticket updatTicket(@PathVariable("ticketID")Integer id,@PathVariable("newEmail")String email) {
+		System.out.println("--->inside controller , put mapping - edit/update ticket");
 		return ticketservice.updateTicket(id, email);
 	}
 	@DeleteMapping(value="/{ticketID}")
 	public void delete(@PathVariable("ticketID") Integer Id) {
+		System.out.println("--->inside controller , delete mapping - delete ticket");
 		ticketservice.deleteTicket(Id);
 	}
 	

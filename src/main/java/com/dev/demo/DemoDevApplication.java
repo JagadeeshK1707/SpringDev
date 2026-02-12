@@ -21,10 +21,13 @@ public class DemoDevApplication implements CommandLineRunner{
   
 	public static void main(String[] args) {
 		SpringApplication.run(DemoDevApplication.class, args);
+		System.out.println("--->inside main method");
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		
+		System.out.println("--->inside run method");
 		Ticket ticket = new Ticket();
 		ticket.setPassingerName("Revi");
 		ticket.setDestinationStation("Bengalore");

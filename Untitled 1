@@ -1,0 +1,13 @@
+how we can verify if it is really connected to data base
+can we see in memery data base 
+by default the H2 database is disabled
+
+if we want to anable the data base 
+spring.h2.console.enabled=true
+spring.datasource.url=jdbc:h2:mem:ticket
+put this commands in the .properties
+
+if we want to the database put the url -   localhost:8080/h2-console
+enter the url=jdbc:h2:mem:ticket    in the text box
+
+

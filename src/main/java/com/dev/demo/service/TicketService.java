@@ -26,6 +26,7 @@ public class TicketService {
 	
 	//retrive all tickts
 	public Iterable<Ticket> getAll(){
+		System.out.println("--->inside service getAll");
 		return ticketDao.findAll();
 	}
 	
@@ -34,6 +35,7 @@ public class TicketService {
 	
 	//retrive individual tickets
 	public Ticket getTicket(Integer tickId) {
+		System.out.println("--->inside service getticket");
 		return ticketDao.findById(tickId).orElse(new Ticket());
 		
 	}
@@ -43,6 +45,7 @@ public class TicketService {
 	
 	//create ticket
 	public Ticket createTicket(Ticket ticketObj) {
+		System.out.println("--->inside service createticket");
 		return ticketDao.save(ticketObj);
 	}
 	
@@ -50,6 +53,7 @@ public class TicketService {
 	
 	//update ticket
 	public Ticket updateTicket(Integer id , String newemail) {
+		System.out.println("--->inside service update ticket");
 		Ticket gettiTicket = getTicket(id);
 		gettiTicket.setEmail(newemail);
 		return ticketDao.save(gettiTicket);
@@ -58,6 +62,7 @@ public class TicketService {
 	
 	//delete ticket
 	public void deleteTicket(Integer id) {
+		System.out.println("--->inside delete ticket");
 		ticketDao.deleteById(id);
 	}
 	
