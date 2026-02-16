@@ -7,6 +7,13 @@ import com.dev.demo.model.Ticket;
 
 @Repository
 public interface TicketDao extends CrudRepository<Ticket, Integer>{
-	
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
 
 }

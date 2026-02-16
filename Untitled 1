@@ -10,4 +10,15 @@ put this commands in the .properties
 if we want to the database put the url -   localhost:8080/h2-console
 enter the url=jdbc:h2:mem:ticket    in the text box
 
+my sql data base
+only configuration need to change and dependencyes  check with version
 
+goto mysql work bench and create one schema
+
+spring.datasource.url=jdbc:mysql://localhost:3306/schema_name
+spring.datasource.username=root
+spring.datasource.password=Passcode@123
+spring.jpa.hibernate.ddl-auto=update
+
+spring.jpa.hibernate.ddl-auto=create
+if we use above line it drop the table and recreate the the table when program runs
