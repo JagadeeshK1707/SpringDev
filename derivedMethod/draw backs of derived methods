@@ -1,0 +1,10 @@
+------draw backs of the derived methods-------
+As per coding standards the method name is 20-25 characters only
+1.more than 2 columns => not work in derived methods
+2.few columns in table not all columns
+3.can i retrive the data from multiple tables
+4.aggrigate functions = group by , count() , sum(),avg(),min(),Max()   => for these type of functions not work in the derived quries
+   What is normalisation in database
+   
+
+
