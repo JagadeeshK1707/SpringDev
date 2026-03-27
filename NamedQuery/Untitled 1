@@ -3,3 +3,13 @@ derived query Vs Named Query
 1.sytactical check
 2.sematical check
 3.Query execution plan
+
+
+here we can use sql joins and primary key and foregin key  the code level , here we have joined book, publishers table 
+and it creates the common table for the both table
+
+
+
+
+
+

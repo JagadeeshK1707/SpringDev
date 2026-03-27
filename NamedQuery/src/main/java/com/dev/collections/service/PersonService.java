@@ -5,14 +5,33 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.dev.collections.dao.BookDao;
 import com.dev.collections.dao.PersonDao;
+import com.dev.collections.dao.PublisherDao;
+import com.dev.collections.model.Book;
 import com.dev.collections.model.Person;
+import com.dev.collections.model.Publisher;
 
 @Service
 public class PersonService {
 	
 	@Autowired
 	private PersonDao persondao;
+	
+	@Autowired
+	private BookDao bookdao;
+	
+	@Autowired
+	private PublisherDao publisherdao;	
+	
+	
+	public Iterable<Book> saveBooks(Iterable<Book> booksList){
+		return bookdao.saveAll(booksList);
+	}
+	public Iterable<Publisher> findAllBooks(){
+		return publisherdao.findAll();
+	}
+	
 	
 	public Iterable<Person> saveAllPersons(Iterable<Person> personList) {
 		return persondao.saveAll(personList);

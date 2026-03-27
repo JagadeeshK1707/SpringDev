@@ -2,21 +2,38 @@ package com.dev.collections;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.dev.collections.dao.PersonDao;
+import com.dev.collections.dao.PublisherDao;
+import com.dev.collections.model.Book;
 import com.dev.collections.model.Person;
+import com.dev.collections.model.Publisher;
 import com.dev.collections.service.PersonService;
+
 
 @SpringBootApplication
 public class CollectionsSbootApplication implements CommandLineRunner{
+
+    private final PublisherDao publisherDao;
+
+    private final PersonDao personDao;
 	
 	@Autowired
 	private PersonService service;
+
+
+    CollectionsSbootApplication(PersonDao personDao, PublisherDao publisherDao) {
+        this.personDao = personDao;
+        this.publisherDao = publisherDao;
+    }
 
 
 	public static void main(String[] args) {
@@ -69,17 +86,41 @@ public class CollectionsSbootApplication implements CommandLineRunner{
 //			System.out.println(person.toString());
 //		}
 //		
-		givenDataByLastName();
 		
-		
-		
-		
-		
+		//givenDataByLastName();
+	
+		savePublishers();
 		
 		
 	}
 	
-	
+	private void savePublishers() {
+		Publisher publisher1 = new Publisher("AbdulKalam");
+		Publisher publisher2 = new Publisher("modi");
+		Publisher publisher3 = new Publisher("mama");
+		Publisher publisher4 = new Publisher("alludu");
+		Publisher publisher5 = new Publisher("atha");
+
+		//one to one from book to publisher 
+		Book book1 = new Book("parctice makes man perfect", new HashSet<>(Arrays.asList(publisher1)));
+		Book book2 = new Book("sindhoor", new HashSet<>(Arrays.asList( publisher2)));
+		Book book3 = new Book("loginLogout", new HashSet<>(Arrays.asList(publisher3)));
+		
+		//one to many from book to publisher
+		Book book4 = new Book("book2", new HashSet<>(Arrays.asList(publisher4,publisher5)));
+		
+		//one to many publisher to book
+		//check how the data structures are mapping
+		Book book5 = new Book("book4", new HashSet<>(Arrays.asList(publisher5)));
+		Book book6 = new Book("book5", new HashSet<>(Arrays.asList(publisher5)));
+		//service.saveBooks(Arrays.asList(book1,book2,book3,book4,book5,book6));
+		
+		Iterable<Publisher> allBooks = service.findAllBooks();
+		for (Publisher publisher : allBooks) {
+			System.out.println(publisher.toString());
+		}
+		
+	}
 	
 	
 	
